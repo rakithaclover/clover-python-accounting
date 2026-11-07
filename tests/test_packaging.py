@@ -19,7 +19,7 @@ def test_drivers_are_not_required():
 
 
 def test_drivers_are_extras():
-    """Each driver is available as an extra named after its database."""
+    """Each driver is available as an extra."""
     extras = _project()["optional-dependencies"]
     assert any(d.startswith("mysqlclient") for d in extras["mysql"])
-    assert any(d.startswith("psycopg2") for d in extras["postgresql"])
+    assert any(d.startswith("psycopg2") for d in extras["postgres"])

@@ -27,7 +27,7 @@ pip install python-accounting
 The database drivers are optional extras, so only the driver of the database you use is installed:
 
 ```bash
-pip install "python-accounting[postgresql]"   # psycopg2
+pip install "python-accounting[postgres]"     # psycopg2
 pip install "python-accounting[mysql]"        # mysqlclient
 ```
 
@@ -481,7 +481,7 @@ config.configure_hashing(salt="a secret salt")
 config.configure_dates(long="%d %B %Y")
 ```
 
-Name the driver in PostgreSQL URLs, as SQLAlchemy takes a plain `postgresql://` URL to mean psycopg 3 rather than the psycopg2 driver of the `postgresql` extra.
+Name the driver in PostgreSQL URLs, as SQLAlchemy takes a plain `postgresql://` URL to mean psycopg 3 rather than the psycopg2 driver of the `postgres` extra.
 
 ## Supported Databases
 

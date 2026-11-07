@@ -533,7 +533,7 @@ description = "psycopg2 - Python-PostgreSQL Database Adapter"
 optional = true
 python-versions = ">=3.10"
 groups = ["main"]
-markers = "extra == \"postgresql\""
+markers = "extra == \"postgres\""
 files = [
     {file = "psycopg2-2.9.13-cp310-cp310-win_amd64.whl", hash = "sha256:7d48416f6a4823ada9b33771085331b842b553df88435701bff5ddb4469905de"},
     {file = "psycopg2-2.9.13-cp311-cp311-win_amd64.whl", hash = "sha256:d16e7a5f5e400ac51ca953d42255804eff6c8a9650b1a2074f6ca6261d740382"},
@@ -1176,9 +1176,9 @@ python-discovery = ">=1.6.1"
 
 [extras]
 mysql = ["mysqlclient"]
-postgresql = ["psycopg2"]
+postgres = ["psycopg2"]
 
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11"
-content-hash = "627eb677bf0ca1b7078be798bfd5fbd73437296478982195c3f2b3104c2acef6"
+content-hash = "7414376c9eaf1f636ccb234811037e669d56906a9646c684e9b2087ac3c4bff6"

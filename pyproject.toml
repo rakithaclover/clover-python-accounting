@@ -12,7 +12,7 @@ dependencies = [
 
 [project.optional-dependencies]
 mysql = ["mysqlclient (>=2.3.0,<3.0.0)"]
-postgresql = ["psycopg2 (>=2.9.13,<3.0.0)"]
+postgres = ["psycopg2 (>=2.9.13,<3.0.0)"]
 
 [tool.poetry]
 packages = [{include = "python_accounting"}, {include = "config.toml"}]
