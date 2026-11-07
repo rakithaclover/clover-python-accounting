@@ -24,11 +24,21 @@ You can use [pip](https://pip.pypa.io/en/stable/) to install. The library requir
 pip install python-accounting
 ```
 
-The MySQL and PostgreSQL drivers are installed with the library and are built from source, so a compiler and the client libraries of both databases are needed first. On Debian and Ubuntu:
+The database drivers are optional extras, so only the driver of the database you use is installed:
 
 ```bash
-apt-get install gcc pkg-config python3-dev libpq-dev default-libmysqlclient-dev
+pip install "python-accounting[postgresql]"   # psycopg2
+pip install "python-accounting[mysql]"        # mysqlclient
 ```
+
+Both drivers are built from source, so a compiler and the client library of that database are needed first. On Debian and Ubuntu:
+
+```bash
+apt-get install gcc pkg-config python3-dev libpq-dev                  # PostgreSQL
+apt-get install gcc pkg-config python3-dev default-libmysqlclient-dev # MySQL / MariaDB
+```
+
+SQLite needs no extra.
 
 ## Usage
 Full documentation for the library can be found on [readthedocs](https://python-accounting.readthedocs.io/en/latest/).
@@ -471,7 +481,7 @@ config.configure_hashing(salt="a secret salt")
 config.configure_dates(long="%d %B %Y")
 ```
 
-Name the driver in PostgreSQL URLs, as SQLAlchemy takes a plain `postgresql://` URL to mean psycopg 3 rather than the psycopg2 driver that the library installs.
+Name the driver in PostgreSQL URLs, as SQLAlchemy takes a plain `postgresql://` URL to mean psycopg 3 rather than the psycopg2 driver of the `postgresql` extra.
 
 ## Supported Databases
 
