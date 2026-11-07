@@ -1,0 +1,62 @@
+# Tests of the clover-python-accounting distribution: lint and the test suite on SQLite,
+# and the PostgreSQL checks of tests/postgresql/smoke.py.
+
+name: clover-ci
+
+on:
+  push:
+    branches: ["clover/**"]
+  pull_request:
+    branches: ["clover/**"]
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  sqlite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: |
+          pipx install poetry
+          poetry install
+      - name: Lint
+        run: poetry run pylint ./python_accounting
+      - name: Test
+        run: poetry run pytest -v
+
+  postgresql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: smoke
+          POSTGRES_DB: accounting
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          sudo apt-get update && sudo apt-get install -y libpq-dev
+          pipx install poetry
+          poetry install --extras postgresql
+      - name: PostgreSQL checks
+        run: poetry run python tests/postgresql/smoke.py "postgresql+psycopg2://postgres:smoke@localhost:5432/accounting"

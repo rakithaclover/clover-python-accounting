@@ -1,3 +1,16 @@
+> **clover-python-accounting** is a maintained distribution of
+> [python-accounting](https://github.com/ekmungai/python-accounting) by Edward Mungai, maintained by Clover.
+> It is python-accounting 2.1.0 with the fixes listed in [NOTICE.md](NOTICE.md), each also offered to the
+> original project. The import name is unchanged (`python_accounting`), so install one distribution or the
+> other, not both:
+>
+> ```bash
+> pip install "clover-python-accounting[postgresql]"
+> ```
+>
+> Everything below is the original documentation; where it says `pip install python-accounting`, use
+> `clover-python-accounting` for this distribution.
+
 
 Python Accounting
 ==================

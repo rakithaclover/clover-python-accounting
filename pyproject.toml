@@ -1,14 +1,24 @@
 [project]
-name = "python-accounting"
-version = "2.1.0"
-description = "The world's most comprehensive python Double Entry Accounting Library"
+name = "clover-python-accounting"
+version = "2.1.0.1"
+description = "A maintained distribution of python-accounting, the double entry accounting library, with fixes for larger amounts, session isolation and ledger integrity"
 authors = [{ name = "Edward Mungai", email = "emungai@microbooks.io" }]
+maintainers = [{ name = "Clover" }]
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE.md"]
 requires-python = ">=3.11"
 dependencies = [
     "sqlalchemy (>=2.1.4,<2.2)",
     "python-dateutil (>=2.9.0.post0,<3.0.0)",
 ]
+
+[project.urls]
+Homepage = "https://github.com/rakithaclover/clover-python-accounting"
+Source = "https://github.com/rakithaclover/clover-python-accounting"
+Changes = "https://github.com/rakithaclover/clover-python-accounting/blob/clover/2.1/NOTICE.md"
+Upstream = "https://github.com/ekmungai/python-accounting"
+Documentation = "https://python-accounting.readthedocs.io/en/latest/"
 
 [project.optional-dependencies]
 mysql = ["mysqlclient (>=2.3.0,<3.0.0)"]

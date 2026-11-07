@@ -1,0 +1,64 @@
+# Builds a release of clover-python-accounting when a v* tag is pushed: tests, wheel and sdist,
+# twine check, SHA-256 sums, and a GitHub release carrying them. Nothing is uploaded to PyPI.
+
+name: clover-release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    uses: ./.github/workflows/clover-ci.yml
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install Poetry
+        run: pipx install poetry
+      - name: Check the version matches the tag
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          version="$(poetry version --short)"
+          if [ "${TAG#v}" != "$version" ]; then
+            echo "::error::Tag $TAG does not match the pyproject.toml version $version."
+            exit 1
+          fi
+      - name: Build
+        run: poetry build
+      - name: Check the distribution metadata
+        run: pipx run twine check --strict dist/*
+      - name: Checksums
+        run: cd dist && sha256sum * > SHA256SUMS && cat SHA256SUMS
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" dist/* --repo "$GITHUB_REPOSITORY" --title "$TAG" \
+            --notes "clover-python-accounting $TAG. Changes and upstream base: see NOTICE.md. Not published on PyPI."

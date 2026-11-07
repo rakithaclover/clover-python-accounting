@@ -1,3 +1,24 @@
+## 2.1.0.1 (clover-python-accounting) - 2026-11-07
+
+First release of the clover-python-accounting distribution: python-accounting 2.1.0 with the changes below,
+each also offered upstream (see NOTICE.md).
+
+### Fixes
+
+- Session listeners are registered on `AccountingSession` only, so other sessions in the same application are no longer filtered by `session.entity` or failed by it.
+- `created_at` and `updated_at` are taken when a record is saved and updated, rather than when the library was imported.
+- Moving the current Reporting Period flushes instead of committing the caller's session, so a rollback undoes it with the rest of the caller's work.
+
+### Added
+
+- `chain = "entity"` hashing option: each Ledger record chains to the previous Ledger record of its Entity. The default, `"legacy"`, is unchanged.
+- `amount_precision` database option for amount and quantity columns. The default, 13, is unchanged.
+
+### Upgrading
+
+- The database drivers are optional extras: install `clover-python-accounting[postgresql]` or `[mysql]`.
+- The distribution is named `clover-python-accounting`; the import name is still `python_accounting`. Uninstall `python-accounting` first.
+
 ## 2.1.0 - 2026-10-30
 
 ### Added
