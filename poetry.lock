@@ -439,9 +439,10 @@ files = [
 name = "mysqlclient"
 version = "2.3.0"
 description = "Python interface to MySQL"
-optional = false
+optional = true
 python-versions = ">=3.10"
 groups = ["main"]
+markers = "extra == \"mysql\""
 files = [
     {file = "mysqlclient-2.3.0-cp310-cp310-win_amd64.whl", hash = "sha256:3153c5c9538b1fe6363b1c61b7e0d31e8007624bfa3de70dcca00b4d2461ca93"},
     {file = "mysqlclient-2.3.0-cp310-cp310-win_arm64.whl", hash = "sha256:fb94f509834cbe119c93c2b661d6115ff293d5db9300d8a410126923b5960d48"},
@@ -529,9 +530,10 @@ files = [
 name = "psycopg2"
 version = "2.9.13"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
-optional = false
+optional = true
 python-versions = ">=3.10"
 groups = ["main"]
+markers = "extra == \"postgresql\""
 files = [
     {file = "psycopg2-2.9.13-cp310-cp310-win_amd64.whl", hash = "sha256:7d48416f6a4823ada9b33771085331b842b553df88435701bff5ddb4469905de"},
     {file = "psycopg2-2.9.13-cp311-cp311-win_amd64.whl", hash = "sha256:d16e7a5f5e400ac51ca953d42255804eff6c8a9650b1a2074f6ca6261d740382"},
@@ -1172,7 +1174,11 @@ packaging = ">=26.3"
 platformdirs = ">=4.4,<5"
 python-discovery = ">=1.6.1"
 
+[extras]
+mysql = ["mysqlclient"]
+postgresql = ["psycopg2"]
+
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11"
-content-hash = "b9973ca764682826296301a9f8b03017a50e6b95b5f43de8368401ad30ab4e4d"
+content-hash = "627eb677bf0ca1b7078be798bfd5fbd73437296478982195c3f2b3104c2acef6"
