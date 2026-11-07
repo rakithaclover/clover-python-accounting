@@ -25,12 +25,12 @@ contains a change, it is dropped from this distribution.
 
 | # | Change | Branch | Upstream issue | Upstream pull request | Status |
 |---|---|---|---|---|---|
-| D0 | Session listeners are registered on `AccountingSession` only, so other sessions in the application are not affected | `fix/d0-session-listeners` | — | — | not yet offered |
-| D1 | `mysqlclient` and `psycopg2` are the optional extras `mysql` and `postgresql` | `fix/d1-optional-db-drivers` | — | — | not yet offered |
-| D2 | `created_at` and `updated_at` are taken when records are saved and updated, not at import | `fix/d2-timestamp-defaults` | — | — | not yet offered |
-| D3 | Opt-in hash chain `chain = "entity"`: each Ledger record chains to the previous Ledger record of its Entity (default `"legacy"` unchanged) | `fix/d3-ledger-hash-chain` | — | — | not yet offered |
-| D4 | Opt-in `amount_precision` for amount and quantity columns (default 13 unchanged) | `fix/d4-amount-precision` | — | — | not yet offered |
-| D5 | Moving the current Reporting Period flushes instead of committing the caller's session | `fix/d5-no-commit-in-listener` | — | — | not yet offered |
+| D0 | Session listeners are registered on `AccountingSession` only, so other sessions in the application are not affected | `fix/d0-session-listeners` | [#40](https://github.com/ekmungai/python-accounting/issues/40) | [#41](https://github.com/ekmungai/python-accounting/pull/41) | offered 2026-11-07 |
+| D1 | `mysqlclient` and `psycopg2` are the optional extras `mysql` and `postgresql` | `fix/d1-optional-db-drivers` | [#37](https://github.com/ekmungai/python-accounting/issues/37) (accepted by the maintainer) | — (left to the issue's author; branch offered in a [comment](https://github.com/ekmungai/python-accounting/issues/37#issuecomment-6705768294)) | offered 2026-11-07; upstream names the PostgreSQL extra `postgres`, this release `postgresql` until the next one |
+| D2 | `created_at` and `updated_at` are taken when records are saved and updated, not at import | `fix/d2-timestamp-defaults` | [#42](https://github.com/ekmungai/python-accounting/issues/42) | [#43](https://github.com/ekmungai/python-accounting/pull/43) | offered 2026-11-07 |
+| D3 | Opt-in hash chain `chain = "entity"`: each Ledger record chains to the previous Ledger record of its Entity (default `"legacy"` unchanged) | `fix/d3-ledger-hash-chain` | [#44](https://github.com/ekmungai/python-accounting/issues/44) | [#45](https://github.com/ekmungai/python-accounting/pull/45) | offered 2026-11-07 |
+| D4 | Opt-in `amount_precision` for amount and quantity columns (default 13 unchanged) | `fix/d4-amount-precision` | [#46](https://github.com/ekmungai/python-accounting/issues/46) | [#47](https://github.com/ekmungai/python-accounting/pull/47) | offered 2026-11-07 |
+| D5 | Moving the current Reporting Period flushes instead of committing the caller's session | `fix/d5-no-commit-in-listener` | [#48](https://github.com/ekmungai/python-accounting/issues/48) | [#49](https://github.com/ekmungai/python-accounting/pull/49) | offered 2026-11-07 |
 
 Packaging (this distribution only, not offered upstream): distribution name `clover-python-accounting`, versions
 `<upstream version>.<n>`, this notice, the README notice, `CONTRIBUTING-CLOVER.md`, the `clover-*` workflows, and
